@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace = "layouts :: header"> </head>
+<body>
+<nav th:replace = "layouts :: foo"></nav>
+<form action="/projects/save" method="post" th:object = "${project}">
+<input type="text" placeholder="Name of the project" th:field = "${project.name}">
+<select th:field = "${project.stage}">
+<option th:value = "NOTSTARTED"> Not Started </option>
+<option th:value = "INPROGRESS"> In Progress </option>
+<option th:value = "COMPLETED">Completed </option>
+</select>
+
+
+<textarea placeholder="Enter the description of the project" th:field = "${project.description}"></textarea>
+
+<select th:field = "${project.employees}" multiple="multiple">
+	<option th:each = "employee : ${allemployees}" 
+			th:value = "${employee.employeeId}"
+			th:text = "${employee.firstName}" > 
+</select>
+
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
